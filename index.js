@@ -25,7 +25,7 @@ app.get('/', async (req, res) => {
     try {
         const resp = await axios.get(contacts, { headers });
         const data = resp.data.results;
-        res.render('contacts', { title: 'Contacts | HubSpot APIs', data });   
+        res.render('homepage', { title: 'Contacts | HubSpot APIs', data });   
     } catch (error) {
         console.error(error);
     
@@ -33,7 +33,7 @@ app.get('/', async (req, res) => {
 });
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
-app.get('/form', async (req, res) => {
+app.get('/update-cobj', async (req, res) => {
   const contacts = 'https://api.hubspot.com/crm/v3/objects/contacts';
 
     const headers = {       
@@ -47,7 +47,7 @@ app.get('/form', async (req, res) => {
         const data = resp.data.results;
          //const resp = await axios.get(contacts, { headers });
         // const data = resp.data.results;
-        res.render('form', { title: 'Form'});   
+        res.render('update-cobj', { title: 'Form'});   
     } catch (error) {
         console.error(error);
     
@@ -56,7 +56,7 @@ app.get('/form', async (req, res) => {
 })
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
-app.post('/form', async (req, res) => {
+app.post('/update-cobj', async (req, res) => {
     const objectId = '57933275564'; 
     const objectTypeId = '2-65001814';
     const updateUrl = `https://api.hubapi.com/crm/v3/objects/${objectTypeId}/${objectId}`;
@@ -76,10 +76,11 @@ app.post('/form', async (req, res) => {
     };
 
     try {
+        
         console.log("DEBUG: Awaiting HubSpot response...");
         const response = await axios.patch(updateUrl, data, { headers });
-        console.log("SUCCESS! Response Status:", response.status);
-        res.send("Update successful!");
+       //console.log("SUCCESS! Response Status:", response.status);
+        res.redirect('/');
     } catch (error) {
         // This will catch the crash and print the actual reason for the failure
         console.error("CRITICAL FAILURE - Catch block triggered:");

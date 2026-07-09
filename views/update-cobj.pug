@@ -8,7 +8,7 @@ html
         h1 Form
         .form-wrapper
             form(action="/update-cobj", method="POST")
-                input(type="hidden", name="objectId", value=objectId)
+                
                 p
                     | Plant Name: 
                     input(type="text", name="name" value=name)
@@ -18,7 +18,7 @@ html
                 p
                 | Plant edibility: 
                 select(type="text", name="edible" value=edible)
-                    option(value="YES") Yes
-                    option(value="NO") No
+                    option(value="Yes") Yes
+                    option(value="No") No
                 button(type="submit") Submit
             

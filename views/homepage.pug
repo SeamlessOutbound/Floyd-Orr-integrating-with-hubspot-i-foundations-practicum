@@ -1,14 +1,22 @@
 
 doctype html
-html 
-    head 
-        title= `${title}`
-        meta(name="viewport" content="width=device-width, initial-scale=1")
-        link(rel="stylesheet", href="/css/style.css")
-    body    
-        h1 Contacts
-        .cards 
-            each contact in data
-                .card 
-                    h2.card__name #{contact.properties.firstname}  #{contact.properties.lastname}
-                    p.card__email #{contact.properties.email}
+html
+  head
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 My Plants
+    a(href="/update-cobj") Add to this table
+    
+    table
+      thead
+        tr
+          th Name
+          th Color
+          th Edible
+      tbody
+        each item in data
+          tr
+            td #{item.properties.name}
+            td #{item.properties.color}
+            td #{item.properties.edible}
